@@ -14,7 +14,7 @@ const getProfile = async (req, res) => {
 
 const getAllProfile = async (req, res) => {
     try {
-        const allUsers = await User.find().select("-password -__v");
+        const allUsers = await User.find({role: "User"}).select("-password -__v");
         res.status(200).send({ message: "All users", users: allUsers });
     } catch (error) {
         console.log(error);
