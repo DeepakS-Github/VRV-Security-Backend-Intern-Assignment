@@ -3,7 +3,7 @@ const User = require('../models/user.model');
 const getProfile = async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select("-password");
-        res.status(200).send(user);
+        res.status(200).send({message: "Your details successfully fetched", user});
     } catch (error) {
         console.log(error);
         res.status(500).send({ message: "Something went wrong!" });
@@ -15,7 +15,7 @@ const getProfile = async (req, res) => {
 const getAllProfile = async (req, res) => {
     try {
         const allUsers = await User.find({role: "User"}).select("-password -__v");
-        res.status(200).send({ message: "All users", users: allUsers });
+        res.status(200).send({ message: "All users successfully fetched", users: allUsers });
     } catch (error) {
         console.log(error);
         res.status(500).send({ message: "Something went wrong!" });
