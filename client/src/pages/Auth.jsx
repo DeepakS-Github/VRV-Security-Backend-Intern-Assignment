@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Spinner from "../components/Spinner";
 import useHttpClient from "../hooks/useHttpCall";
-import { setJwtTokenCookie } from "../utils/setJwtTokenCookie";
+import { setJwtTokenCookie } from "../utils/jwtTokenCookie";
 import { useNavigate } from "react-router-dom";
 
 
@@ -22,7 +22,6 @@ const Auth = ({mode}) => {
             });
             console.log(response);
             navigate('/login');
-            // setIsCreateAccountForm(false);
         }
         else {
             const response = await sendRequest({
@@ -34,6 +33,7 @@ const Auth = ({mode}) => {
                 // for 1 day
                 setJwtTokenCookie(response.data.token, 1);
             }
+            navigate('/main');
             console.log(response);
         }
     }
