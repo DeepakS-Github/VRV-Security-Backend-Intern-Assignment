@@ -4,7 +4,11 @@ const { generateAccessToken } = require("../utils/token.utils");
 
 const signup = async (req, res) => {
     try {
-        let { username, email, password } = req.body;
+        let { username, email, password, confirmPassword } = req.body;
+
+        if(password!=confirmPassword){
+            return res.status(400).json({message: "Passwords do not match"})
+        }
 
         const salt = await bcrypt.genSalt(8);
         password = await bcrypt.hash(password, salt);
