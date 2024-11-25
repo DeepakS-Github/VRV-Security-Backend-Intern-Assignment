@@ -2,16 +2,45 @@ const User = require('../models/user.model');
 
 const getProfile = async (req, res) => {
     try {
-        console.log(req.user);
         const user = await User.findById(req.user.id).select("-password");
-        console.log(user);
         res.status(200).send(user);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: "Something went wrong!" });
     }
 };
 
 
+
+const getAllProfile = async (req, res) => {
+    try {
+        const allUsers = await User.find().select("-password -__v");
+        res.status(200).send({ message: "All users", users: allUsers });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: "Something went wrong!" });
+    }
+}
+
+
+const deleteProfile = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const deletedUser = await User.findByIdAndDelete(userId);
+        if (!deletedUser) {
+            return res.status(404).send({ message: "User not found!" });
+        }
+        res.status(200).send({ message: "User deleted successfully" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: "Something went wrong!" });
+    }
+}
+
+
+
 module.exports = {
-    getProfile
+    getProfile,
+    getAllProfile,
+    deleteProfile
 }
