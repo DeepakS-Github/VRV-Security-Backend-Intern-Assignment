@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
         enum: ['Admin', 'User'],
         default: 'User'
     },
-    date: {
+    createdAt: {
         type: Date,
         default: Date.now
     }
