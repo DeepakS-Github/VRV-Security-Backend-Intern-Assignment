@@ -6,8 +6,12 @@ const signup = async (req, res) => {
     try {
         let { username, email, password, confirmPassword } = req.body;
 
+        if(!username || !email || !password || !confirmPassword) {
+            return res.status(400).json({ message: "Please fill in all fields" });
+        }
+
         if(password!=confirmPassword){
-            return res.status(400).json({message: "Passwords do not match"})
+            return res.status(400).json({message: "Password and Confirm Password do not match"})
         }
 
         const salt = await bcrypt.genSalt(8);
@@ -41,6 +45,10 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
     try {
         let { email, password } = req.body;
+
+        if(!email || !password) {
+            return res.status(400).json({ message: "Please fill in all fields" });
+        }
 
         const user = await User.findOne({ email });
 
