@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getJwtDecodedTokenCookie, removeJwtTokenCookie } from '../utils/jwtTokenCookie';
 import useHttpClient from '../hooks/useHttpCall';
-import { decodeJwt } from '../utils/decodeJWT';
+import { decodeJwt } from '../utils/decodeJwt';
 import { convertToIST } from '../utils/utcToISTTime';
 import Spinner from '../components/Spinner';
 import { useNavigate } from 'react-router-dom';
