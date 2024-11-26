@@ -6,6 +6,18 @@ This backend is built with **Node.js**, **Express.js**, and **MongoDB Atlas** to
 
 ---
 
+## **Access Credentials**
+
+### Admin Login:
+- **Email:** `admin@vrv.com`
+- **Password:** `Admin@123`
+
+### Moderator Login:
+- **Email:** `moderator@vrv.com`
+- **Password:** `Moder@123`
+
+---
+
 ## **Table of Contents**
 1. [Technology Stack](#technology-stack)
 2. [Features](#features)
