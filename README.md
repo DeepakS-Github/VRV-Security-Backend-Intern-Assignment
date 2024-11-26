@@ -18,6 +18,11 @@ This backend is built with **Node.js**, **Express.js**, and **MongoDB Atlas** to
 
 ---
 
+## **Hosted Link**
+You can access the project live at: https://vrv-security-two.vercel.app/login
+
+---
+
 ## **Table of Contents**
 1. [Technology Stack](#technology-stack)
 2. [Features](#features)
