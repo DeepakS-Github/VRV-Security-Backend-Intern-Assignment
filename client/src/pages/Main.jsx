@@ -14,7 +14,7 @@ const subHead = {
 const Main = () => {
 
     const { sendRequest } = useHttpClient();
-    const [deletingId, setDeletingId] = useState();
+    const [deletingId, setDeletingId] = useState("");
 
     const token = getJwtDecodedTokenCookie();
     const role = decodeJwt(token).role;
@@ -134,8 +134,10 @@ const Main = () => {
                                     <td className="px-6 py-4">
                                         <button className="font-medium text-blue-600 hover:underline" onClick={(e) => {
                                             e.preventDefault();
-                                            deleteUser(user?._id)
-                                        }}>{deletingId==user._id?<Spinner width={"w-5"} color={"#2563eb"} />:"Delete"}</button>
+                                            if (confirm("Do you want to delete this user?")) {
+                                                deleteUser(user?._id)
+                                            }
+                                        }}>{deletingId == user._id ? <Spinner width={"w-5"} color={"#2563eb"} /> : "Delete"}</button>
                                     </td>
                                 }
 
