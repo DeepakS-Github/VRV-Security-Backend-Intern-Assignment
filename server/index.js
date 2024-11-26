@@ -6,8 +6,8 @@ const cors = require('cors');
 const app = express();
 
 const corsOptions = {
-    origin: ["http://localhost:5173", "https://vrv-security-server.vercel.app"],
-    methods: ["GET", "POST"],
+    origin: ["http://localhost:5173", "https://vrv-security-two.vercel.app"],
+    methods: "*",
     allowedHeaders: ["Content-Type", "Authorization"],
 };
 
