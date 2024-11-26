@@ -188,8 +188,6 @@ By following these steps, you'll have the application running locally on your ma
 
 ---
 
-## Contribution
-
 ## **Future Enhancements**
 
 1. Add password reset functionality.
