@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const User = require('../models/user.model');
 const { generateAccessToken } = require("../utils/token.utils");
+const { isStrongPassword } = require("../utils/validation.utils");
 
 const signup = async (req, res) => {
     try {
@@ -8,6 +9,10 @@ const signup = async (req, res) => {
 
         if(!username || !email || !password || !confirmPassword) {
             return res.status(400).json({ message: "Please fill in all fields" });
+        }
+
+        if(!isStrongPassword(password)){
+            return res.status(400).json({ message: "Password must be follow the validation criteria"});
         }
 
         if(password!=confirmPassword){
