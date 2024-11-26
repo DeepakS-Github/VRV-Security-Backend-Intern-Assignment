@@ -4,6 +4,7 @@ import Auth from "./pages/Auth"
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Main from "./pages/Main";
 import { isAuthenticated } from "./utils/jwtTokenCookie";
+import { Analytics } from "@vercel/analytics/react";
 
 
 // Protected Route Component
@@ -42,6 +43,7 @@ const App = () => {
 
         </Routes>
       </Router>
+      <Analytics />
     </>
   )
 }
