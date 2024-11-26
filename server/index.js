@@ -14,7 +14,7 @@ const corsOptions = {
 app.use(express.json());
 app.use(cors(corsOptions));
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 const auth = require('./routes/auth.route');
 const user = require('./routes/user.route');
