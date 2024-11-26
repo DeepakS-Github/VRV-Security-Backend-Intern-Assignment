@@ -12,7 +12,7 @@ const signup = async (req, res) => {
         }
 
         if (!isValidEmail(email)) {
-            return res.status(400).json({ message: "Invalid email" });
+            return res.status(400).json({ message: "Invalid email format" });
         }
 
         if (!isStrongPassword(password)) {
