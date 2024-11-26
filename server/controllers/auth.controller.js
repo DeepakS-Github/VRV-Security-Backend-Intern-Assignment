@@ -3,6 +3,13 @@ const User = require('../models/user.model');
 const { generateAccessToken } = require("../utils/token.utils");
 const { isStrongPassword, isValidEmail } = require("../utils/validation.utils");
 
+
+/**
+ * Handles user registration by validating inputs, hashing the password,
+ * and creating a new user in the database.
+ * Responds with appropriate error or success messages.
+ */
+
 const signup = async (req, res) => {
     try {
         let { username, email, password, confirmPassword } = req.body;
@@ -46,6 +53,11 @@ const signup = async (req, res) => {
 };
 
 
+
+/**
+ * Handles user login by verifying the email and password.
+ * Generates and returns a JWT token upon successful authentication.
+ */
 
 const login = async (req, res) => {
     try {
