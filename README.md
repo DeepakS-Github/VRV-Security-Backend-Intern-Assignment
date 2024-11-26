@@ -23,6 +23,10 @@ You can access the project live at: https://vrv-security-two.vercel.app/login
 
 ---
 
+![diagram-export-11-27-2024-1_48_26-AM](https://github.com/user-attachments/assets/51c8795d-3d16-405c-8f70-6c1ce0686670)
+
+---
+
 ## **Table of Contents**
 1. [Technology Stack](#technology-stack)
 2. [Features](#features)
