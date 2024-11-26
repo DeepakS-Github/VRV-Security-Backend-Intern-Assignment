@@ -37,10 +37,6 @@ const signup = async (req, res) => {
                 return res.status(400).send({
                     message: "User with this email already exists"
                 });
-            } else if (error.keyPattern.username) {
-                return res.status(400).send({
-                    message: "User with this username already exists"
-                });
             }
         }
 
