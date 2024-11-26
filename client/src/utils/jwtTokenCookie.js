@@ -16,3 +16,13 @@ export const getJwtDecodedTokenCookie = () => {
     return match ? match.split("=")[1] : null;
 };
 
+export const removeJwtTokenCookie = () => {
+    document.cookie = "access-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+};
+
+
+export const isAuthenticated = () => {
+    return document.cookie.includes("access-token=");
+};
+
+

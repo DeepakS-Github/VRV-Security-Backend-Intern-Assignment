@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { getJwtDecodedTokenCookie } from '../utils/jwtTokenCookie';
+import { getJwtDecodedTokenCookie, removeJwtTokenCookie } from '../utils/jwtTokenCookie';
 import useHttpClient from '../hooks/useHttpCall';
 import { decodeJwt } from '../utils/decodeJWT';
 import { convertToIST } from '../utils/utcToISTTime';
 import Spinner from '../components/Spinner';
+import { useNavigate } from 'react-router-dom';
 
 const subHead = {
     "Admin": "All Users (with delete option)",
@@ -18,6 +19,8 @@ const Main = () => {
 
     const token = getJwtDecodedTokenCookie();
     const role = decodeJwt(token).role;
+
+    const navigate = useNavigate();
 
     console.log(role);
 
@@ -83,7 +86,13 @@ const Main = () => {
 
     return (
         <section className='w-10/12 mx-auto my-24'>
-            <h1 className="mb-8 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl">Hello {role}!</h1>
+            <div className="mb-8 flex justify-between items-center">
+                <h1 className="text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl">Hello {role}!</h1>
+                <button className="flex flex-row justify-center items-center text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center" onClick={()=>{
+                    removeJwtTokenCookie();
+                    navigate('/login');
+                }}>Logout</button>
+            </div>
 
             <h2 className="mb-8 text-xl font-semibold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl">{subHead[role]}</h2>
 
