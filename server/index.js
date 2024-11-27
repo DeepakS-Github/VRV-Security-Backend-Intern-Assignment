@@ -16,15 +16,13 @@ const corsOptions = {
 app.use(express.json());
 app.use(cors(corsOptions));
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 const auth = require('./routes/auth.route');
 const user = require('./routes/user.route');
+const health = require('./routes/health.route');
 
-app.get('/health-check', (req, res) => {
-    res.status(200).send("Server is working");
-})
-
+app.use("/", health)
 app.use("/auth", auth);
 app.use("/user", user);
 
