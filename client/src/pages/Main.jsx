@@ -77,9 +77,6 @@ const Main = () => {
 
 
     const updateRole = async (e, userId) => {
-
-
-
         if (confirm("Do you want to change the role of this user?")) {
             try {
                 setRoleUpdateId(userId);
@@ -103,6 +100,9 @@ const Main = () => {
             } finally {
                 setRoleUpdateId("");
             }
+        }
+        else{
+            e.target.value = users.find(user => user._id === userId).role;
         }
     }
 
