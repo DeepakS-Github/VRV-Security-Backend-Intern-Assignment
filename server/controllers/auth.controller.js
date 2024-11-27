@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const User = require('../models/user.model');
 const { generateAccessToken } = require("../utils/token.utils");
 const { isStrongPassword, isValidEmail } = require("../utils/validation.utils");
+const { USER_TOKEN_EXPIRY, ADMIN_MODERATOR_TOKEN_EXPIRY } = require("../constants/moderator.constant");
 
 
 /**
@@ -80,10 +81,10 @@ const login = async (req, res) => {
 
         let token;
         if (user.role === "User") {
-            token = generateAccessToken({ id: user._id, role: user.role }, "24h");
+            token = generateAccessToken({ id: user._id, role: user.role }, USER_TOKEN_EXPIRY);
         }
         else {
-            token = generateAccessToken({ id: user._id, role: user.role }, "1h");
+            token = generateAccessToken({ id: user._id, role: user.role }, ADMIN_MODERATOR_TOKEN_EXPIRY);
         }
 
 
