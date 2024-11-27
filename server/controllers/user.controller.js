@@ -71,7 +71,7 @@ const updateProfileRole = async (req, res) => {
             user.role = "User";
         }
         await user.save();
-        res.status(200).send({ message: `User role updated successfully`, new_role: user.role });
+        res.status(200).send({ message: `Role updated successfully`, new_role: user.role });
     }
     catch (error) {
         console.log(error);
