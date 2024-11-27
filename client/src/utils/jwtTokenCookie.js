@@ -1,7 +1,9 @@
+import { decodeJwt } from "./decodeJwt";
 
-export const setJwtTokenCookie = (token, days) => {
+export const setJwtTokenCookie = (token) => {
     const date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    const expiryTime = decodeJwt(token).exp;
+    date.setTime(expiryTime * 1000);
     const expires = `expires=${date.toUTCString()}`;
     document.cookie = `access-token=${token};${expires};path=/;Secure`;
 };

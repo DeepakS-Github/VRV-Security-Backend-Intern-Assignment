@@ -21,7 +21,7 @@ const useHttpClient = () => {
   ) => {
     setIsLoading(true);
     try {
-      console.log(axios.defaults.baseURL+url, method, body);
+      console.log(axios.defaults.baseURL + url, method, body);
       const response = await axios({
         url,
         method,
@@ -36,7 +36,7 @@ const useHttpClient = () => {
       console.log(error);
       if (toast)
         showToast(error.response.data.message, toastType(error.response.status));
-      throw error;
+      // throw error;
     } finally {
       setIsLoading(false);
     }

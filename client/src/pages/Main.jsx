@@ -5,6 +5,7 @@ import { decodeJwt } from '../utils/decodeJwt';
 import { convertToIST } from '../utils/utcToISTTime';
 import Spinner from '../components/Spinner';
 import { useNavigate } from 'react-router-dom';
+import { showToast } from '../utils/toast';
 
 const subHead = {
     "Admin": "All Users (with delete and role change option)",
@@ -19,11 +20,15 @@ const Main = () => {
     const [roleUpdateId, setRoleUpdateId] = useState("");
 
     const token = getJwtDecodedTokenCookie();
-    const role = decodeJwt(token).role;
-
+    
     const navigate = useNavigate();
 
-    console.log(role);
+    let role = "Unknown";
+    if(token){
+        role = decodeJwt(token).role;
+        console.log(role);
+    }
+
 
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(false);

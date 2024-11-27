@@ -30,8 +30,7 @@ const Auth = ({ mode }) => {
                 body: formDetails,
             });
             if (response.data.token) {
-                // for 1 day
-                setJwtTokenCookie(response.data.token, 1);
+                setJwtTokenCookie(response.data.token);
             }
             navigate('/main');
             console.log(response);

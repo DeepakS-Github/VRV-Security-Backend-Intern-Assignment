@@ -78,7 +78,14 @@ const login = async (req, res) => {
             return res.status(400).send({ message: "Invalid password" });
         }
 
-        const token = generateAccessToken({ id: user._id, role: user.role });
+        let token;
+        if (user.role === "User") {
+            token = generateAccessToken({ id: user._id, role: user.role }, "24h");
+        }
+        else {
+            token = generateAccessToken({ id: user._id, role: user.role }, "1h");
+        }
+
 
         res.status(200).send({ message: "User logged in successfully", token });
     } catch (error) {
