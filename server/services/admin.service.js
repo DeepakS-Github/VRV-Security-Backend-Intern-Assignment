@@ -24,9 +24,7 @@ const createAdmin = async () => {
     }
     catch (error) {
         console.log("Something went wrong! while creating admin", error);
-        
-        // Stops the server if an error occurs while creating the admin
-        process.exit(1);
+        res.status(500).send({ message: "Something went wrong! while creating admin" });
     }
 }
 
