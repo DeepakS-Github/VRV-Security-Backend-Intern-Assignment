@@ -8,7 +8,7 @@ const User = require('../models/user.model');
 const getProfile = async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select("-password");
-        res.status(200).send({message: "Your details successfully fetched", user});
+        res.status(200).send({ message: "Your details successfully fetched", user });
     } catch (error) {
         console.log(error);
         res.status(500).send({ message: "Something went wrong!" });
@@ -23,7 +23,7 @@ const getProfile = async (req, res) => {
  */
 const getAllProfile = async (req, res) => {
     try {
-        const allUsers = await User.find({role: "User"}).select("-password -__v");
+        const allUsers = await User.find({ role: { $in: ["User", "Moderator"] } }).select("-password -__v");
         res.status(200).send({ message: "All users successfully fetched", users: allUsers });
     } catch (error) {
         console.log(error);
@@ -51,8 +51,37 @@ const deleteProfile = async (req, res) => {
 
 
 
+// Update the role from user to moderator and vice versa (at max 5 moderator are allowed)
+const updateProfileRole = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).send({ message: "User not found!" });
+        }
+        if (user.role === "User") {
+            const moderatorsCount = await User.countDocuments({ role: "Moderator" });
+            if (moderatorsCount >= 5) {
+                return res.status(400).send({ message: "Only 5 moderators are allowed!" });
+            }
+            
+            user.role = "Moderator";
+        } else {
+            user.role = "User";
+        }
+        await user.save();
+        res.status(200).send({ message: `User role updated successfully`, new_role: user.role });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).send({ message: "Something went wrong!" });
+    }
+}
+
+
 module.exports = {
     getProfile,
     getAllProfile,
-    deleteProfile
+    deleteProfile,
+    updateProfileRole
 }

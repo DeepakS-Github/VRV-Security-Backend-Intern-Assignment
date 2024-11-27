@@ -14,5 +14,8 @@ router.get("/all-profile", verifyAccessToken, authorize("Admin", "Moderator"), a
 // Delete User Route (Admin)
 router.delete("/profile/:userId", verifyAccessToken, authorize("Admin"), authController.deleteProfile); 
 
+// Update User Role Route (Admin)
+router.patch("/profile-role/:userId", verifyAccessToken, authorize("Admin"), authController.updateProfileRole);
+
 
 module.exports = router;
