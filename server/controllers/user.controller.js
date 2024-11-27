@@ -61,8 +61,8 @@ const updateProfileRole = async (req, res) => {
         }
         if (user.role === "User") {
             const moderatorsCount = await User.countDocuments({ role: "Moderator" });
-            if (moderatorsCount >= 5) {
-                return res.status(400).send({ message: "Only 5 moderators are allowed!" });
+            if (moderatorsCount >= process.env.MODERATOR_LIMIT) {
+                return res.status(400).send({ message: `Only ${process.env.MODERATOR_LIMIT} moderators are allowed!` });
             }
             
             user.role = "Moderator";
