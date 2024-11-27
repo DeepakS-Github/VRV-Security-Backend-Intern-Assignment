@@ -16,6 +16,7 @@ const Main = () => {
 
     const { sendRequest } = useHttpClient();
     const [deletingId, setDeletingId] = useState("");
+    const [roleUpdateId, setRoleUpdateId] = useState("");
 
     const token = getJwtDecodedTokenCookie();
     const role = decodeJwt(token).role;
@@ -73,6 +74,29 @@ const Main = () => {
     }
 
 
+    const updateRole = async (e, userId) => {
+        if (confirm("Do you want to change the role of this user?")) {
+            try {
+                setRoleUpdateId(userId);
+                const response = await sendRequest({
+                    url: `/user/profile-role/${userId}`,
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                });
+                setRoleUpdateId("");
+            } catch (error) {
+                e.target.value = users.find(user => user._id === userId).role;
+            }
+        }
+        else {
+            console.log("cancelled");
+            e.target.value = users.find(user => user._id === userId).role;
+        }
+    }
+
+
     useEffect(() => {
         if (role === "User") {
             getUserDetails();
@@ -85,10 +109,10 @@ const Main = () => {
 
 
     return (
-        <section className='w-10/12 mx-auto my-24'>
+        <section className='w-10/12 mx-auto my-6 md:my-12 lg:my-24'>
             <div className="mb-8 flex justify-between items-center">
                 <h1 className="text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl">Hello {role}!</h1>
-                <button className="flex flex-row justify-center items-center text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center" onClick={()=>{
+                <button className="flex flex-row justify-center items-center text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center" onClick={() => {
                     removeJwtTokenCookie();
                     navigate('/login');
                 }}>Logout</button>
@@ -110,7 +134,7 @@ const Main = () => {
                                 Password
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                Role
+                                Role/Change Role
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 Account Created At
@@ -133,9 +157,12 @@ const Main = () => {
                                 <td className="px-6 py-4">
                                     •••••••••
                                 </td>
-                                <td className="px-6 py-4">
-                                    {user?.role}
-                                </td>
+                                <select className="px-6 py-4 outline-none cursor-pointer bg-transparent" onChange={(e) => {
+                                    updateRole(e, user._id);
+                                }}>
+                                    <option value={user?.role} selected >{user?.role}</option>
+                                    <option value={user?.role === "User" ? "Moderator" : "User"}>{user?.role === "User" ? "Moderator" : "User"}</option>
+                                </select>
                                 <td className="px-6 py-4">
                                     {convertToIST(user?.createdAt)}
                                 </td>

@@ -1,3 +1,4 @@
+const { MODERATOR_LIMIT } = require('../constants/moderator.constant');
 const User = require('../models/user.model');
 
 
@@ -61,8 +62,8 @@ const updateProfileRole = async (req, res) => {
         }
         if (user.role === "User") {
             const moderatorsCount = await User.countDocuments({ role: "Moderator" });
-            if (moderatorsCount >= process.env.MODERATOR_LIMIT) {
-                return res.status(400).send({ message: `Only ${process.env.MODERATOR_LIMIT} moderators are allowed!` });
+            if (moderatorsCount >= MODERATOR_LIMIT) {
+                return res.status(400).send({ message: `Only ${MODERATOR_LIMIT} moderators are allowed!` });
             }
             
             user.role = "Moderator";
