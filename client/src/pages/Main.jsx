@@ -20,11 +20,11 @@ const Main = () => {
     const [roleUpdateId, setRoleUpdateId] = useState("");
 
     const token = getJwtDecodedTokenCookie();
-    
+
     const navigate = useNavigate();
 
     let role = "Unknown";
-    if(token){
+    if (token) {
         role = decodeJwt(token).role;
         console.log(role);
     }
@@ -106,7 +106,7 @@ const Main = () => {
                 setRoleUpdateId("");
             }
         }
-        else{
+        else {
             e.target.value = users.find(user => user._id === userId).role;
         }
     }
@@ -149,7 +149,7 @@ const Main = () => {
                                 Password
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                Role/Change Role
+                                Role{role === "Admin" && "/Change Role"}
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 Account Created At
@@ -172,14 +172,15 @@ const Main = () => {
                                 <td className="px-6 py-4">
                                     •••••••••
                                 </td>
-                                {roleUpdateId === user._id ? <td className="px-6 py-4">
+                                {role === "Admin" ? roleUpdateId === user._id ? <td className="px-6 py-4">
                                     <Spinner width={"w-5"} color={"#2563eb"} />
                                 </td> : <select className="px-6 py-4 outline-none cursor-pointer bg-transparent" onChange={(e) => {
                                     updateRole(e, user._id);
                                 }}>
                                     <option value={user?.role} selected >{user?.role}</option>
                                     <option value={user?.role === "User" ? "Moderator" : "User"}>{user?.role === "User" ? "Moderator" : "User"}</option>
-                                </select>}
+                                </select> : <td className="px-6 py-4">{user?.role}</td>}
+
 
 
                                 <td className="px-6 py-4">
