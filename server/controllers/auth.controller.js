@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 const User = require('../models/user.model');
 const { generateAccessToken } = require("../utils/token.utils");
 const { isStrongPassword, isValidEmail } = require("../utils/validation.utils");
-const { USER_TOKEN_EXPIRY, ADMIN_MODERATOR_TOKEN_EXPIRY } = require("../constants/moderator.constant");
+const { USER_TOKEN_EXPIRY, ADMIN_MODERATOR_TOKEN_EXPIRY } = require("../constants/token-expiry.constant");
 
 
 /**
