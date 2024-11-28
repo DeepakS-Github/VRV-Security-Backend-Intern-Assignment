@@ -6,18 +6,6 @@ This backend is built with **Node.js**, **Express.js**, and **MongoDB Atlas** to
 
 ---
 
-## **Access Credentials**  
-
-### Admin Login:  
-- **Email:** Based on ENV variable `ADMIN_EMAIL`  
-- **Password:** Based on ENV variable `ADMIN_PASSWORD`  
-
-### Moderator Login:  
-- **Email:** Any user promoted to moderator by the admin.  
-- **Password:** Set by the user during registration.  
-
----  
-
 ## **Hosted Link**  
 
 You can access the live project at: https://vrv-security-two.vercel.app/login.  
@@ -26,8 +14,6 @@ You can access the live project at: https://vrv-security-two.vercel.app/login.
 >  To log in as an admin and explore all available features, use the following credentials:  
 >  - **Email**: `admin@vrv.com`  
 >  - **Password**: `Admin@123`  
-
-
 
 ---
 
