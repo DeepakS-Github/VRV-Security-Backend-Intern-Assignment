@@ -184,10 +184,12 @@ To run the project locally, ensure you have Node.js and MongoDB installed. Follo
 2. **Frontend Setup**:  
     - Navigate to the project `client` folder.  
     - Create a `.env` file in the root directory of the `client` folder.  
-    - Add the following environment variables to the client `.env` file:  
-        ```plaintext  
-        VITE_SERVER_URL = "https://vrv-security-server.onrender.com"  
-        ```  
+    - Add the following environment variables to the client `.env` file:
+       ```plaintext
+       VITE_SERVER_URL = "https://vrv-security-server.onrender.com"  # Use the hosted backend URL
+       # For local development, use the local server URL:
+       # VITE_SERVER_URL = "http://localhost:{PORT}"  # Replace {PORT} with the port number defined in your server's `.env` file
+       ```
     - To run the Frontend:  
         ```bash  
         npm run dev  
