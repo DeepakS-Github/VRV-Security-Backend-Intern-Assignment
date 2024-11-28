@@ -19,7 +19,7 @@ const getProfile = async (req, res) => {
 
 
 /**
- * Retrieves the profiles of all users with the role "User".
+ * Retrieves the profiles of all users with the role "User" and "Moderator".
  * Excludes the password and __v fields in the response.
  */
 const getAllProfile = async (req, res) => {
