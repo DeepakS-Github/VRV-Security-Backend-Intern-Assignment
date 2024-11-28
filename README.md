@@ -63,7 +63,7 @@ You can access the live project at: https://vrv-security-two.vercel.app/login.
      - The admin can change roles between `User` and `Moderator` using the route:  
        `PATCH /user/profile-role/:userId`.  
      - The maximum number of moderators is configurable in `moderator.constant.js` (default: 5).
-     - **Note**: The project allows only **one admin** through the interface, while **multiple users and moderators** can be added.   
+     - **Note**: The project allows only **one admin** through the interface, while **multiple users and moderators** are allowed.   
 
 4. **User Registration and Login**:  
    - Users can sign up and log in via forms on the website.  
