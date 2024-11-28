@@ -145,8 +145,8 @@ You can access the live project at: https://vrv-security-two.vercel.app/login.
 
 | **Endpoint**               | **Method** | **Description**                                                            | **Authorization**        |  
 |----------------------------|------------|----------------------------------------------------------------------------|--------------------------|  
-| `/auth/signup`             | POST       | Registers a new user with email and password.                              | Public                   |  
-| `/auth/login`              | POST       | Logs in a user and returns a JWT token.                                    | Public                   |  
+| `/auth/signup`             | POST       | Registers a new user with email and password.                              | `Public`                 |  
+| `/auth/login`              | POST       | Logs in a user and returns a JWT token.                                    | `Public`                 |  
 | `/user/profile`            | GET        | Retrieves the logged-in user's profile.                                    | `User`                   |  
 | `/user/all-profile`        | GET        | Fetches all users.                                                         | `Moderator`, `Admin`     |  
 | `/user/profile-role/:id`   | PATCH      | Updates a user's role (`User` ↔ `Moderator`).                              | `Admin`                  |  
